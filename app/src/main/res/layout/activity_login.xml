@@ -47,4 +47,15 @@
         android:layout_below="@+id/etPassword"
         android:layout_alignParentEnd="true"
         android:id="@+id/bLogin" />
+
+    <TextView
+        android:text="Incorrect Username/Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvIncorrect"
+        android:textAlignment="center"
+        android:layout_below="@+id/bCancel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible" />
 </RelativeLayout>
