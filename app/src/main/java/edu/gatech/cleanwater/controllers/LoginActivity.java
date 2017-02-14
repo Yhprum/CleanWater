@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import edu.gatech.cleanwater.R;
 
@@ -18,6 +19,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
+
+        final TextView tvIncorrect = (TextView) findViewById(R.id.tvIncorrect);
 
         final Button bLogin = (Button) findViewById(R.id.bLogin);
         final Button bCancel = (Button) findViewById(R.id.bCancel);
@@ -33,8 +36,12 @@ public class LoginActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cancel = new Intent(LoginActivity.this, TempActivity.class);
-                LoginActivity.this.startActivity(cancel);
+                if (etUsername.getText().toString().equals("user") && etPassword.getText().toString().equals("pass")) {
+                    Intent login = new Intent(LoginActivity.this, TempActivity.class);
+                    LoginActivity.this.startActivity(login);
+                } else {
+                    tvIncorrect.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
