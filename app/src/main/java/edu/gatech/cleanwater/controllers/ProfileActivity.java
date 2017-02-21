@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import edu.gatech.cleanwater.R;
 
-public class TempActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +20,8 @@ public class TempActivity extends AppCompatActivity {
         bLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent logout = new Intent(TempActivity.this, WelcomeActivity.class);
-                TempActivity.this.startActivity(logout);
+                Intent logout = new Intent(ProfileActivity.this, WelcomeActivity.class);
+                ProfileActivity.this.startActivity(logout);
             }
         });
     }

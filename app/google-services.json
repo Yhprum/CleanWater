@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "356428504328-k87pd26unsmf6k0o0ls7dqg2qpdv1rrd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.gatech.cleanwater",
+            "certificate_hash": "1b63e3f0ed0bcbbd35fffdbceda8edb7633fbfd4"
+          }
+        },
+        {
           "client_id": "356428504328-l1l5uga3kh49cqepu2073f6pj38i2mml.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356428504328-l1l5uga3kh49cqepu2073f6pj38i2mml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

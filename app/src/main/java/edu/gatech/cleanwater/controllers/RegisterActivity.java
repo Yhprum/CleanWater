@@ -89,13 +89,16 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Registers a new user via Firebase
+     */
     private void registerUser() {
         username = etUsername.getText().toString().trim();
         password = etPassword.getText().toString().trim();
         type = (UserType) sType.getSelectedItem();
 
         if(TextUtils.isEmpty(username)) {
-            Toast.makeText(this, "Enter a username", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter an E-mail", Toast.LENGTH_SHORT).show();
             return;
         }
         if(TextUtils.isEmpty(password)) {
@@ -108,10 +111,11 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isComplete()) {
+                        pdLoad.dismiss();
+                        if(task.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(RegisterActivity.this, "failure", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
