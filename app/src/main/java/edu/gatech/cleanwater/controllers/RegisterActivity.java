@@ -21,14 +21,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import edu.gatech.cleanwater.Model.User;
 import edu.gatech.cleanwater.Model.UserType;
 import edu.gatech.cleanwater.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText etUsername, etPassword;
-    private String username, password;
-    private UserType type;
     private Spinner sType;
     private ProgressDialog pdLoad;
 
@@ -91,9 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
      * Registers a new user via Firebase
      */
     private void registerUser() {
-        username = etUsername.getText().toString().trim();
-        password = etPassword.getText().toString().trim();
-        type = (UserType) sType.getSelectedItem();
+        String username = etUsername.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        UserType type = (UserType) sType.getSelectedItem();
 
         if(TextUtils.isEmpty(username)) {
             Toast.makeText(this, "Enter an E-mail", Toast.LENGTH_SHORT).show();
