@@ -1,5 +1,6 @@
 package edu.gatech.cleanwater.controllers;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText etUsername;
     private EditText etPassword;
+    private ProgressDialog pdLoad;
 
     private FirebaseAuth mAuth;
 
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+
+        pdLoad = new ProgressDialog(this);
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -50,12 +54,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 loginUser();
-//                if (etUsername.getText().toString().equals("user") && etPassword.getText().toString().equals("pass")) {
-//                    Intent login = new Intent(LoginActivity.this, ProfileActivity.class);
-//                    LoginActivity.this.startActivity(login);
-//                } else {
-//                    tvIncorrect.setVisibility(View.VISIBLE);
-//                }
             }
         });
     }
@@ -75,13 +73,16 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        pdLoad.setMessage("Logging in...");
+        pdLoad.show();
         mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        pdLoad.dismiss();
                         if(task.isSuccessful()) {
-                            Intent login = new Intent(LoginActivity.this, ProfileActivity.class);
+                            finish();
+                            Intent login = new Intent(getApplicationContext(), ProfileActivity.class);
                             LoginActivity.this.startActivity(login);
                         } else {
                             final TextView tvIncorrect = (TextView) findViewById(R.id.tvIncorrect);
