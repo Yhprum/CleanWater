@@ -16,6 +16,12 @@ public class SourceReportList {
 
     public SourceReportList() {
         list = new ArrayList<>();
+        addReports();
+    }
+
+    private void addReports() {
+        list.add(new SourceReport("MM/dd/yyyy HH:mm:00", "ryan", "bottled", "clean"));
+        list.add(new SourceReport("MM/dd/yyyy HH:mm:01", "murphy", "stream", "treatable"));
     }
 
     public void addReport(SourceReport report) {

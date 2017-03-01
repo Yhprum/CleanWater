@@ -21,4 +21,9 @@ public class SourceReport {
         this.waterCondition = waterCondition;
         reportNumber = reportNumber_next++;
     }
+
+    @Override
+    public String toString() {
+        return "Date " + date + "\nReporter: " + reporter + "\nType: " + waterType + "\nCondition: " + waterCondition;
+    }
 }

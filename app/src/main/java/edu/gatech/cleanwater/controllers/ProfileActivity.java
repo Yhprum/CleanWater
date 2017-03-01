@@ -30,6 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView tvUsername;
     private Button bLogout;
     private Button bSubmit;
+    private Button bView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvUsername = (TextView) findViewById(R.id.tvEmail);
         bLogout = (Button) findViewById(R.id.bLogout);
         bSubmit = (Button) findViewById(R.id.bSubmit);
+        bView = (Button) findViewById(R.id.bView);
 
         tvUsername.setText("Welcome " + user.getEmail());
 
@@ -78,6 +80,14 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent report = new Intent(ProfileActivity.this, ReportActivity.class);
                 ProfileActivity.this.startActivity(report);
+            }
+        });
+
+        bView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent view = new Intent(ProfileActivity.this, ListActivity.class);
+                startActivity(view);
             }
         });
     }
