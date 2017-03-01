@@ -17,6 +17,21 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
+
         <include layout="@layout/source_list" />
+
     </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        android:id="@+id/fabNew"
+        app:layout_anchor="@+id/frameLayout"
+        android:layout_gravity="top|left"
+        app:layout_anchorGravity="bottom|right" />
+
 </android.support.design.widget.CoordinatorLayout>

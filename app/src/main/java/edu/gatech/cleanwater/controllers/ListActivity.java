@@ -1,5 +1,7 @@
 package edu.gatech.cleanwater.controllers;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +19,8 @@ import edu.gatech.cleanwater.R;
 
 public class ListActivity extends AppCompatActivity {
 
+    private FloatingActionButton fabNew;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,16 @@ public class ListActivity extends AppCompatActivity {
 
         View recyclerView = findViewById(R.id.rvSourceList);
         setupRecyclerView((RecyclerView) recyclerView);
+
+        fabNew = (FloatingActionButton) findViewById(R.id.fabNew);
+
+        fabNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent add = new Intent(ListActivity.this, ReportActivity.class);
+                startActivity(add);
+            }
+        });
     }
 
     /**

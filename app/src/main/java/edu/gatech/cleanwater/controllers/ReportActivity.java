@@ -44,7 +44,7 @@ public class ReportActivity extends AppCompatActivity {
         bCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back = new Intent(ReportActivity.this, ProfileActivity.class);
+                Intent back = new Intent(ReportActivity.this, ListActivity.class);
                 startActivity(back);
             }
         });
@@ -61,7 +61,7 @@ public class ReportActivity extends AppCompatActivity {
      * Submits a new Water Source Report with the given fields filled out
      */
     private void submitReport() {
-        //TODO: add some verification, add compass directions to lat/Long
+        //TODO: add some verification, add map input if we can
         String type = etType.getText().toString().trim();
         String quality = etQuality.getText().toString().trim();
         double lat = Double.parseDouble(etLat.getText().toString().trim());
