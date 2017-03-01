@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                         pdLoad.dismiss();
                         if(task.isSuccessful()) {
                             finish();
-                            Intent login = new Intent(getApplicationContext(), ListActivity.class);
+                            Intent login = new Intent(getApplicationContext(), DrawerActivity.class);//TODO
                             LoginActivity.this.startActivity(login);
                         } else {
                             final TextView tvIncorrect = (TextView) findViewById(R.id.tvIncorrect);

@@ -76,5 +76,8 @@ public class ReportActivity extends AppCompatActivity {
         SourceReport report = new SourceReport(date, name, type, quality);
 
         SourceReportList.getInstance().addReport(report);
+
+        Intent back = new Intent(ReportActivity.this, DrawerActivity.class);
+        startActivity(back);
     }
 }
