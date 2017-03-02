@@ -24,6 +24,7 @@ public class SourceReport {
 
     @Override
     public String toString() {
-        return "Date " + date + "\nReporter: " + reporter + "\nType: " + waterType + "\nCondition: " + waterCondition;
+        String username = reporter.substring(0, reporter.indexOf('@'));
+        return "Date: " + date + "\nReporter: " + username + "\nType: " + waterType + "\nCondition: " + waterCondition;
     }
 }

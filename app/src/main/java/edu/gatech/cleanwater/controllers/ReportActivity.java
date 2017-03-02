@@ -1,7 +1,6 @@
 package edu.gatech.cleanwater.controllers;
 
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import edu.gatech.cleanwater.Model.SourceReport;
 import edu.gatech.cleanwater.Model.SourceReportList;
@@ -44,7 +42,7 @@ public class ReportActivity extends AppCompatActivity {
         bCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back = new Intent(ReportActivity.this, DrawerActivity.class);
+                Intent back = new Intent(ReportActivity.this, ListActivity.class);
                 startActivity(back);
             }
         });
@@ -77,7 +75,7 @@ public class ReportActivity extends AppCompatActivity {
 
         SourceReportList.getInstance().addReport(report);
 
-        Intent back = new Intent(ReportActivity.this, DrawerActivity.class);
+        Intent back = new Intent(ReportActivity.this, ListActivity.class);
         startActivity(back);
     }
 }

@@ -22,7 +22,7 @@
         <activity android:name=".controllers.RegisterActivity" />
         <activity android:name=".controllers.ReportActivity" />
         <activity
-            android:name=".controllers.DrawerActivity"
+            android:name=".controllers.ListActivity"
             android:label="@string/title_activity_drawer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

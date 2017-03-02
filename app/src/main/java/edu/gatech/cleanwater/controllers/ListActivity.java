@@ -3,7 +3,6 @@ package edu.gatech.cleanwater.controllers;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +24,10 @@ import edu.gatech.cleanwater.Model.SourceReport;
 import edu.gatech.cleanwater.Model.SourceReportList;
 import edu.gatech.cleanwater.R;
 
-public class DrawerActivity extends AppCompatActivity
+/**
+ * The activity that displays the list of water source reports
+ */
+public class ListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -42,7 +44,7 @@ public class DrawerActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent add = new Intent(DrawerActivity.this, ReportActivity.class);
+                Intent add = new Intent(ListActivity.this, ReportActivity.class);
                 startActivity(add);
             }
         });
@@ -79,12 +81,12 @@ public class DrawerActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -97,7 +99,7 @@ public class DrawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_profile) {
             finish();
-            startActivity(new Intent(DrawerActivity.this, ProfileActivity.class));
+            startActivity(new Intent(ListActivity.this, ProfileActivity.class));
         } else if (id == R.id.nav_map) {
             //start map activity
         } else if (id == R.id.nav_slideshow) {
@@ -111,9 +113,13 @@ public class DrawerActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * setting up the recylcler view to diplay the list of source reports
+     * @param recyclerView the recycler view to set up
+     */
     private void setupRecyclerView(RecyclerView recyclerView) {
         SourceReportList list = SourceReportList.getInstance();
-        recyclerView.setAdapter(new DrawerActivity.ReportRecyclerViewAdapter(list.list));
+        recyclerView.setAdapter(new ListActivity.ReportRecyclerViewAdapter(list.list));
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -123,7 +129,7 @@ public class DrawerActivity extends AppCompatActivity
     /**
      * create a custom adapter for our recyclerView
      */
-    public class ReportRecyclerViewAdapter extends RecyclerView.Adapter<DrawerActivity.ReportRecyclerViewAdapter.ViewHolder> {
+    public class ReportRecyclerViewAdapter extends RecyclerView.Adapter<ListActivity.ReportRecyclerViewAdapter.ViewHolder> {
 
         private final List<SourceReport> reports;
 
@@ -136,15 +142,15 @@ public class DrawerActivity extends AppCompatActivity
         }
 
         @Override
-        public DrawerActivity.ReportRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ListActivity.ReportRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.source_list_content, parent, false);
-            return new DrawerActivity.ReportRecyclerViewAdapter.ViewHolder(view);
+            return new ListActivity.ReportRecyclerViewAdapter.ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final DrawerActivity.ReportRecyclerViewAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(final ListActivity.ReportRecyclerViewAdapter.ViewHolder holder, int position) {
             final SourceReportList srList = SourceReportList.getInstance();
             holder.mReport = reports.get(position);
 

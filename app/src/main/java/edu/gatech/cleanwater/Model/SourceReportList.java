@@ -20,8 +20,8 @@ public class SourceReportList {
     }
 
     private void addReports() {
-        list.add(new SourceReport("MM/dd/yyyy HH:mm:00", "ryan", "bottled", "clean"));
-        list.add(new SourceReport("MM/dd/yyyy HH:mm:01", "murphy", "stream", "treatable"));
+        list.add(new SourceReport("7/21/2001 12:56:00", "one@two.com", "bottled", "clean"));
+        list.add(new SourceReport("8/17/2013 2:45:01", "firstname@lastname.com", "stream", "treatable"));
     }
 
     public void addReport(SourceReport report) {
