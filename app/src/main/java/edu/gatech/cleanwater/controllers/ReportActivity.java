@@ -44,7 +44,7 @@ public class ReportActivity extends AppCompatActivity {
         bCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back = new Intent(ReportActivity.this, ListActivity.class);
+                Intent back = new Intent(ReportActivity.this, DrawerActivity.class);
                 startActivity(back);
             }
         });

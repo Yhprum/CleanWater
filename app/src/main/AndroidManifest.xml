@@ -21,7 +21,6 @@
         <activity android:name=".controllers.ProfileActivity" />
         <activity android:name=".controllers.RegisterActivity" />
         <activity android:name=".controllers.ReportActivity" />
-        <activity android:name=".controllers.ListActivity" />
         <activity
             android:name=".controllers.DrawerActivity"
             android:label="@string/title_activity_drawer"

@@ -86,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
         bView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent view = new Intent(ProfileActivity.this, ListActivity.class);
+                Intent view = new Intent(ProfileActivity.this, DrawerActivity.class);
                 startActivity(view);
             }
         });
