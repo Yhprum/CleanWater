@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Created by Ryan on 2/27/2017.
+ * holds all of the data of a source report
  */
 
 public class SourceReport {
@@ -12,13 +13,17 @@ public class SourceReport {
     public String waterType;
     public String waterCondition;
     public int reportNumber;
+    public double latitude;
+    public double longitude;
     public static int reportNumber_next = 1000;
 
-    public SourceReport(String date, String reporter, String waterType, String waterCondition) {
+    public SourceReport(String date, String reporter, String waterType, String waterCondition, double latitude, double longitude) {
         this.date = date;
         this.reporter = reporter;
         this.waterType = waterType;
         this.waterCondition = waterCondition;
+        this.latitude = latitude;
+        this.longitude = longitude;
         reportNumber = reportNumber_next++;
     }
 

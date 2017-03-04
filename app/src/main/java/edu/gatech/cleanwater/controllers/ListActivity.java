@@ -101,7 +101,7 @@ public class ListActivity extends AppCompatActivity
             finish();
             startActivity(new Intent(ListActivity.this, ProfileActivity.class));
         } else if (id == R.id.nav_map) {
-            //start map activity
+            startActivity(new Intent(ListActivity.this, MapsActivity.class));
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {//TODO: create logout button

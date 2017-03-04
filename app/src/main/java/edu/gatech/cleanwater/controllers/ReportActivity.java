@@ -71,7 +71,7 @@ public class ReportActivity extends AppCompatActivity {
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        SourceReport report = new SourceReport(date, name, type, quality);
+        SourceReport report = new SourceReport(date, name, type, quality, lat, longitude);
 
         SourceReportList.getInstance().addReport(report);
 
