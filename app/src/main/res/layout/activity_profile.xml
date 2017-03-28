@@ -27,38 +27,6 @@
         android:id="@+id/tvEmail"
         android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/etName"
-        android:layout_alignParentStart="true"
-        android:id="@+id/etAddress"
-        android:layout_alignParentEnd="true"
-        android:hint="Address" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginTop="70dp"
-        android:id="@+id/etName"
-        android:layout_below="@+id/tvEmail"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:hint="Name" />
-
-    <Button
-        android:text="Update Profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etAddress"
-        android:layout_alignParentStart="true"
-        android:id="@+id/bUpdate"
-        android:layout_alignParentEnd="true" />
-
     <Button
         android:text="Submit New Report"
         android:layout_width="wrap_content"
@@ -76,5 +44,59 @@
         android:layout_marginBottom="22dp"
         android:id="@+id/bView"
         android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvEmail"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_marginTop="70dp"
+            android:id="@+id/etName"
+            android:layout_below="@+id/tvEmail"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:hint="Name" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/etName"
+            android:layout_alignParentStart="true"
+            android:id="@+id/etAddress"
+            android:layout_alignParentEnd="true"
+            android:hint="Address" />
+
+        <TextView
+            android:text="User Type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvUserType" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bUpdate"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/sType" />
+
+        <Button
+            android:text="Update Profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bUpdate"
+            android:layout_above="@+id/bView"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="68dp" />
+    </LinearLayout>
 
 </RelativeLayout>

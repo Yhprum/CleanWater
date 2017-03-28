@@ -3,6 +3,7 @@ package edu.gatech.cleanwater.controllers;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,42 +18,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import edu.gatech.cleanwater.Model.PurityReport;
+import edu.gatech.cleanwater.Model.PurityReportList;
 import edu.gatech.cleanwater.Model.SourceReport;
 import edu.gatech.cleanwater.Model.SourceReportList;
-import edu.gatech.cleanwater.Model.UserType;
 import edu.gatech.cleanwater.R;
 
 /**
- * The activity that displays the list of water source reports
+ * The activity that displays the list of water purity reports
  */
-public class ListActivity extends AppCompatActivity
+public class PurityListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private FirebaseAuth mAuth;
-    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
+        setContentView(R.layout.activity_purity_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        myRef = FirebaseDatabase.getInstance().getReference();
 
         View recyclerView = findViewById(R.id.rvSourceList);
         setupRecyclerView((RecyclerView) recyclerView);
@@ -61,7 +47,7 @@ public class ListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent add = new Intent(ListActivity.this, ReportActivity.class);
+                Intent add = new Intent(PurityListActivity.this, PurityReportActivity.class);
                 startActivity(add);
             }
         });
@@ -89,7 +75,7 @@ public class ListActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.drawer, menu);
+        // getMenuInflater().inflate(R.menu.purity_list, menu);
         return true;
     }
 
@@ -97,7 +83,7 @@ public class ListActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+//        // as you specify a parent activity in AndroidManifest.xml.
 //        int id = item.getItemId();
 //
 //        //noinspection SimplifiableIfStatement
@@ -115,27 +101,11 @@ public class ListActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            startActivity(new Intent(ListActivity.this, ProfileActivity.class));
+            startActivity(new Intent(PurityListActivity.this, ProfileActivity.class));
         } else if (id == R.id.nav_map) {
-            startActivity(new Intent(ListActivity.this, MapsActivity.class));
-        } else if (id == R.id.nav_purity) {
-            myRef.child(mAuth.getCurrentUser().getUid()).child("userType").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) { // get the current user's usertype
-                    String type = dataSnapshot.getValue().toString();
-                    System.out.println(type);
-                    if (type.equals(UserType.MANAGER.name()) || type.equals(UserType.ADMIN.name())) {
-                        startActivity(new Intent(ListActivity.this, PurityListActivity.class));
-                    } else {
-                        Toast.makeText(ListActivity.this, "Access Denied", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            startActivity(new Intent(PurityListActivity.this, MapsActivity.class));
+        } else if (id == R.id.nav_source) {
+            startActivity(new Intent(PurityListActivity.this, ListActivity.class));
         } else if (id == R.id.nav_manage) {//TODO: create logout button
 
         }
@@ -150,8 +120,8 @@ public class ListActivity extends AppCompatActivity
      * @param recyclerView the recycler view to set up
      */
     private void setupRecyclerView(RecyclerView recyclerView) {
-        SourceReportList list = SourceReportList.getInstance();
-        recyclerView.setAdapter(new ListActivity.ReportRecyclerViewAdapter(list.list));
+        PurityReportList list = PurityReportList.getInstance();
+        recyclerView.setAdapter(new PurityListActivity.ReportRecyclerViewAdapter(list.list));
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -161,29 +131,29 @@ public class ListActivity extends AppCompatActivity
     /**
      * create a custom adapter for our recyclerView
      */
-    public class ReportRecyclerViewAdapter extends RecyclerView.Adapter<ListActivity.ReportRecyclerViewAdapter.ViewHolder> {
+    public class ReportRecyclerViewAdapter extends RecyclerView.Adapter<PurityListActivity.ReportRecyclerViewAdapter.ViewHolder> {
 
-        private final List<SourceReport> reports;
+        private final List<PurityReport> reports;
 
         /**
          * instantiate a new adapter with the inputted list
          * @param list the list of reports to be displayed
          */
-        public ReportRecyclerViewAdapter(List<SourceReport> list) {
+        public ReportRecyclerViewAdapter(List<PurityReport> list) {
             reports = list;
         }
 
         @Override
-        public ListActivity.ReportRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public PurityListActivity.ReportRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.source_list_content, parent, false);
-            return new ListActivity.ReportRecyclerViewAdapter.ViewHolder(view);
+            return new PurityListActivity.ReportRecyclerViewAdapter.ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final ListActivity.ReportRecyclerViewAdapter.ViewHolder holder, int position) {
-            final SourceReportList srList = SourceReportList.getInstance();
+        public void onBindViewHolder(final PurityListActivity.ReportRecyclerViewAdapter.ViewHolder holder, int position) {
+            final PurityReportList srList = PurityReportList.getInstance();
             holder.mReport = reports.get(position);
 
             holder.mIdView.setText("" + reports.get(position).reportNumber);
@@ -202,7 +172,7 @@ public class ListActivity extends AppCompatActivity
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public SourceReport mReport;
+            public PurityReport mReport;
 
             public ViewHolder(View view) {
                 super(view);
