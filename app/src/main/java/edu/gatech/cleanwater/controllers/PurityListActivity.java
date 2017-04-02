@@ -19,6 +19,13 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.cleanwater.Model.PurityReport;
@@ -33,6 +40,11 @@ import edu.gatech.cleanwater.R;
 public class PurityListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase myDB;
+
+    private List<PurityReport> prList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +52,9 @@ public class PurityListActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        View recyclerView = findViewById(R.id.rvSourceList);
-        setupRecyclerView((RecyclerView) recyclerView);
+        mAuth = FirebaseAuth.getInstance();
+        prList = new ArrayList<>();
+        myDB = FirebaseDatabase.getInstance();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +73,28 @@ public class PurityListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        myDB.getReference("PurityReportList").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                prList.clear();
+                for (DataSnapshot report : dataSnapshot.getChildren()) {
+                    prList.add(report.getValue(PurityReport.class));
+                }
+                View recyclerView = findViewById(R.id.rvSourceList);
+                setupRecyclerView((RecyclerView) recyclerView);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -120,8 +155,9 @@ public class PurityListActivity extends AppCompatActivity
      * @param recyclerView the recycler view to set up
      */
     private void setupRecyclerView(RecyclerView recyclerView) {
-        PurityReportList list = PurityReportList.getInstance();
-        recyclerView.setAdapter(new PurityListActivity.ReportRecyclerViewAdapter(list.list));
+        //PurityReportList list = PurityReportList.getInstance();
+        //recyclerView.setAdapter(new PurityListActivity.ReportRecyclerViewAdapter(list.list));
+        recyclerView.setAdapter(new PurityListActivity.ReportRecyclerViewAdapter(prList));
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);

@@ -2,7 +2,7 @@ package edu.gatech.cleanwater.Model;
 
 /**
  * Created by Ryan on 3/14/2017.
- * Contains a list of all purity reports
+ * holds all of the data of a purity report
  */
 
 public class PurityReport {
@@ -14,6 +14,10 @@ public class PurityReport {
     public double latitude;
     public double longitude;
     public static int reportNumber_next = 1000;
+
+    public PurityReport() {
+
+    }
 
     public PurityReport(String date, String reporter, int virus, int contaminant, double latitude, double longitude) {
         this.date = date;

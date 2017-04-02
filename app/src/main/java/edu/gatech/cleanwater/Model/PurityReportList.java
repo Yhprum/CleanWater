@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Created by Ryan on 3/26/2017.
- * holds all of the data of a source report
+ * Contains a List of all purity reports
  */
 
 public class PurityReportList {

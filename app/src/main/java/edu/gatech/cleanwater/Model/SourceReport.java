@@ -17,6 +17,10 @@ public class SourceReport {
     public double longitude;
     public static int reportNumber_next = 1000;
 
+    public SourceReport() {
+
+    }
+
     public SourceReport(String date, String reporter, String waterType, String waterCondition, double latitude, double longitude) {
         this.date = date;
         this.reporter = reporter;

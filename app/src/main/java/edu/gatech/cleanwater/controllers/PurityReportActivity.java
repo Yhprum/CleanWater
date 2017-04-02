@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,6 +23,8 @@ import edu.gatech.cleanwater.R;
 
 public class PurityReportActivity extends AppCompatActivity {
 
+    private DatabaseReference myRef;
+
     private EditText etVirus;
     private EditText etContaminant;
     private EditText etLat;
@@ -32,6 +36,8 @@ public class PurityReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purity_report);
+
+        myRef = FirebaseDatabase.getInstance().getReference();
 
         bSubmit = (Button) findViewById(R.id.bSubmit);
         bCancel = (Button) findViewById(R.id.bCancel);
@@ -75,7 +81,9 @@ public class PurityReportActivity extends AppCompatActivity {
 
         PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
 
-        PurityReportList.getInstance().addReport(report);
+        myRef.child("PurityReportList").push().setValue(report);
+
+        PurityReportList.getInstance().addReport(report);// remove this
 
         Intent back = new Intent(PurityReportActivity.this, PurityListActivity.class);
         startActivity(back);

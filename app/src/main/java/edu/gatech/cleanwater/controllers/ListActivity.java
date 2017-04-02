@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.cleanwater.Model.SourceReport;
@@ -41,7 +42,9 @@ public class ListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
-    private DatabaseReference myRef;
+    private FirebaseDatabase myDB;
+
+    private List<SourceReport> srList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +54,8 @@ public class ListActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         mAuth = FirebaseAuth.getInstance();
-
-        myRef = FirebaseDatabase.getInstance().getReference();
-
-        View recyclerView = findViewById(R.id.rvSourceList);
-        setupRecyclerView((RecyclerView) recyclerView);
+        srList = new ArrayList<>();
+        myDB = FirebaseDatabase.getInstance();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +66,7 @@ public class ListActivity extends AppCompatActivity
             }
         });
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -74,6 +75,29 @@ public class ListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        myDB.getReference("SourceReportList").addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                srList.clear();
+                for (DataSnapshot report : dataSnapshot.getChildren()) {
+                    srList.add(report.getValue(SourceReport.class));
+                }
+                View recyclerView = findViewById(R.id.rvSourceList);
+                setupRecyclerView((RecyclerView) recyclerView);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -119,7 +143,7 @@ public class ListActivity extends AppCompatActivity
         } else if (id == R.id.nav_map) {
             startActivity(new Intent(ListActivity.this, MapsActivity.class));
         } else if (id == R.id.nav_purity) {
-            myRef.child(mAuth.getCurrentUser().getUid()).child("userType").addListenerForSingleValueEvent(new ValueEventListener() {
+            myDB.getReference().child(mAuth.getCurrentUser().getUid()).child("userType").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) { // get the current user's usertype
                     String type = dataSnapshot.getValue().toString();
@@ -150,8 +174,9 @@ public class ListActivity extends AppCompatActivity
      * @param recyclerView the recycler view to set up
      */
     private void setupRecyclerView(RecyclerView recyclerView) {
-        SourceReportList list = SourceReportList.getInstance();
-        recyclerView.setAdapter(new ListActivity.ReportRecyclerViewAdapter(list.list));
+        //SourceReportList list = SourceReportList.getInstance();
+        //recyclerView.setAdapter(new ListActivity.ReportRecyclerViewAdapter(list.list));
+        recyclerView.setAdapter(new ListActivity.ReportRecyclerViewAdapter(srList));
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
