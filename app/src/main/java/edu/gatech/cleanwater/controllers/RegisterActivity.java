@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import edu.gatech.cleanwater.Model.FirebaseHelper;
 import edu.gatech.cleanwater.Model.User;
 import edu.gatech.cleanwater.Model.UserType;
 import edu.gatech.cleanwater.R;
@@ -32,8 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressDialog pdLoad;
 
     private FirebaseAuth mAuth;
-    //private FirebaseAuth.AuthStateListener mAuthListener;
-   // private static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-//        mAuthListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser user = firebaseAuth.getCurrentUser();
-//                if (user != null) {
-//                    // User is signed in
-//                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-//                } else {
-//                    // User is signed out
-//                    Log.d(TAG, "onAuthStateChanged:signed_out");
-//                }
-//                // ...
-//            }
-//        };
 
         pdLoad = new ProgressDialog(this);
 
@@ -92,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void registerUser() {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
-        UserType type = (UserType) sType.getSelectedItem();
+        //UserType type = (UserType) sType.getSelectedItem();
 
         if(TextUtils.isEmpty(username)) {
             Toast.makeText(this, "Enter an E-mail", Toast.LENGTH_SHORT).show();
@@ -104,32 +89,24 @@ public class RegisterActivity extends AppCompatActivity {
         }
         pdLoad.setMessage("Registering...");
         pdLoad.show();
-        mAuth.createUserWithEmailAndPassword(username, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        pdLoad.dismiss();
-                        if(task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
 
+        String s  = FirebaseHelper.registerUser(username, password);
+
+        if (s.equals("bad username")) {
+            pdLoad.dismiss();
+            Toast.makeText(this, "Enter an E-mail", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (s.equals("bad password")) {
+            pdLoad.dismiss();
+            Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (s.equals("bad")) {
+            pdLoad.dismiss();
+            Toast.makeText(this, "Enter a valid Email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
     }
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        mAuth.addAuthStateListener(mAuthListener);
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        if (mAuthListener != null) {
-//            mAuth.removeAuthStateListener(mAuthListener);
-//        }
-//    }
 }

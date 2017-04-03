@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import edu.gatech.cleanwater.Model.FirebaseHelper;
 import edu.gatech.cleanwater.Model.SourceReport;
 import edu.gatech.cleanwater.Model.SourceReportList;
 import edu.gatech.cleanwater.R;
@@ -65,7 +67,7 @@ public class ReportActivity extends AppCompatActivity {
      * Submits a new Water Source Report with the given fields filled out
      */
     private void submitReport() {
-        //TODO: add some verification, add map input if we can
+        //TODO: add map input if we can
         String type = etType.getText().toString().trim();
         String quality = etQuality.getText().toString().trim();
         double lat = Double.parseDouble(etLat.getText().toString().trim());
@@ -77,13 +79,18 @@ public class ReportActivity extends AppCompatActivity {
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        SourceReport report = new SourceReport(date, name, type, quality, lat, longitude);
-
-        myRef.child("SourceReportList").push().setValue(report);
-
-        SourceReportList.getInstance().addReport(report);// remove this
-
-        Intent back = new Intent(ReportActivity.this, ListActivity.class);
-        startActivity(back);
+        boolean b = FirebaseHelper.sumbitSourceReport(date, name, type, quality, lat, longitude);
+//
+//        SourceReport report = new SourceReport(date, name, type, quality, lat, longitude);
+//
+//        myRef.child("SourceReportList").push().setValue(report);
+//
+//        SourceReportList.getInstance().addReport(report);// remove this
+        if (b){
+            Intent back = new Intent(ReportActivity.this, ListActivity.class);
+            startActivity(back);
+        } else {
+            Toast.makeText(this, "Enter valid info", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import edu.gatech.cleanwater.Model.FirebaseHelper;
 import edu.gatech.cleanwater.Model.PurityReport;
 import edu.gatech.cleanwater.Model.PurityReportList;
 import edu.gatech.cleanwater.Model.SourceReport;
@@ -67,7 +69,7 @@ public class PurityReportActivity extends AppCompatActivity {
      * Submits a new Water Source Report with the given fields filled out
      */
     private void submitReport() {
-        //TODO: add some verification, add map input if we can
+        //TODO: add map input if we can
         int virus = Integer.parseInt(etVirus.getText().toString().trim());
         int contaminant = Integer.parseInt(etContaminant.getText().toString().trim());
         double lat = Double.parseDouble(etLat.getText().toString().trim());
@@ -79,13 +81,19 @@ public class PurityReportActivity extends AppCompatActivity {
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
+        boolean b = FirebaseHelper.sumbitPurityReport(date, name, virus, contaminant, lat, longitude);
 
-        myRef.child("PurityReportList").push().setValue(report);
+//        PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
+//
+//        myRef.child("PurityReportList").push().setValue(report);
+//
+//        PurityReportList.getInstance().addReport(report);// remove this
 
-        PurityReportList.getInstance().addReport(report);// remove this
-
-        Intent back = new Intent(PurityReportActivity.this, PurityListActivity.class);
-        startActivity(back);
+        if (b) {
+            Intent back = new Intent(PurityReportActivity.this, PurityListActivity.class);
+            startActivity(back);
+        } else {
+            Toast.makeText(this, "Enter valid info", Toast.LENGTH_SHORT).show();
+        }
     }
 }
