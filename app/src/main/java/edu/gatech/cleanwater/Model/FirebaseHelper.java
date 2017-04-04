@@ -24,6 +24,16 @@ public class FirebaseHelper {
 
     private static String status = "";
 
+    /**
+     * sumbits a new water source report to the database
+     * @param date the date of submission
+     * @param reporter the name of the reporter
+     * @param waterType the type of water
+     * @param waterCondition the condition of the water
+     * @param latitude the latitude of the water's location
+     * @param longitude the longitude of the water's location
+     * @return true if the report was submitted, false otherwise
+     */
     public static boolean sumbitSourceReport(String date, String reporter, String waterType, String waterCondition, double latitude, double longitude) {
 
         myRef = FirebaseDatabase.getInstance().getReference();
@@ -44,6 +54,16 @@ public class FirebaseHelper {
         return true;
     }
 
+    /**
+     * submits a new water purity report to the database
+     * @param date the date of submission
+     * @param reporter the name of the reporter
+     * @param virus the virus ppm of the water
+     * @param contaminant the contaminant ppm of the water
+     * @param latitude the latitude of the water's location
+     * @param longitude the longitude of the water's location
+     * @return true if the report was submitted, false otherwise
+     */
     public static boolean sumbitPurityReport(String date, String reporter, int virus, int contaminant, double latitude, double longitude) {
         myRef = FirebaseDatabase.getInstance().getReference();
         if (latitude > 90 || latitude < -90) {
@@ -57,6 +77,12 @@ public class FirebaseHelper {
         return true;
     }
 
+    /**
+     * Logs in an existing user
+     * @param username the user's email
+     * @param password the user's password
+     * @return a String representation of if the login succeeded or failed
+     */
     public static String loginUser(String username, String password) {
         status = "";
         if(TextUtils.isEmpty(username)) {
@@ -79,6 +105,12 @@ public class FirebaseHelper {
         return status;
     }
 
+    /**
+     * Registers new user
+     * @param username the user's email
+     * @param password the user's password
+     * @return a String representation of if the register succeeded or failed
+     */
     public static String registerUser(String username, String password) {
         status = "";
         if(TextUtils.isEmpty(username)) {

@@ -17,10 +17,22 @@ public class SourceReport {
     public double longitude;
     public static int reportNumber_next = 1000;
 
+    /**
+     * empty default constructor for Firebase purposes
+     */
     public SourceReport() {
 
     }
 
+    /**
+     * creates a new water source report object
+     * @param date the date of submission
+     * @param reporter the name of the reporter
+     * @param waterType the type of water
+     * @param waterCondition the condition of the water
+     * @param latitude the latitude of the water's location
+     * @param longitude the longitude of the water's location
+     */
     public SourceReport(String date, String reporter, String waterType, String waterCondition, double latitude, double longitude) {
         this.date = date;
         this.reporter = reporter;
