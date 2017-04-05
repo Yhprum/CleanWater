@@ -120,7 +120,7 @@ public class ProfileActivity extends AppCompatActivity {
     /**
      * Saves the inputted data to the database
      */
-    private void saveInfo() {
+    private void saveInfo() { // TODO: check validity
         String name = etName.getText().toString().trim();
         String address = etAddress.getText().toString().trim();
         String type = sType.getSelectedItem().toString();
