@@ -14,20 +14,20 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class DuncanTest {
-
+    @Test
     public void submitPurityReportTest() {
 
-        assertTrue(FirebaseHelper.submitPurityReport(89, -181));
-        assertFalse(FirebaseHelper.submitPurityReport(89, -179));
-        assertFalse(FirebaseHelper.submitPurityReport(89, -89));
+        assertFalse(FirebaseHelper.submitPurityReport(89, -181));
+        assertTrue(FirebaseHelper.submitPurityReport(89, -179));
+        assertTrue(FirebaseHelper.submitPurityReport(89, -89));
 
-        assertTrue(FirebaseHelper.submitPurityReport(91, -181));
-        assertTrue(FirebaseHelper.submitPurityReport(91, -179));
-        assertTrue(FirebaseHelper.submitPurityReport(91, -89));
+        assertFalse(FirebaseHelper.submitPurityReport(91, -181));
+        assertFalse(FirebaseHelper.submitPurityReport(91, -179));
+        assertFalse(FirebaseHelper.submitPurityReport(91, -89));
 
         assertTrue(FirebaseHelper.submitPurityReport(90, -180));
-        assertFalse(FirebaseHelper.submitPurityReport(90, -179));
-        assertFalse(FirebaseHelper.submitPurityReport(90, -89));
+        assertTrue(FirebaseHelper.submitPurityReport(90, -179));
+        assertTrue(FirebaseHelper.submitPurityReport(90, -89));
 
 
 
