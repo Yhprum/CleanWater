@@ -107,6 +107,19 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter a valid Email", Toast.LENGTH_SHORT).show();
             return;
         }
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+        mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    pdLoad.dismiss();
+                    Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                } else {
+                    pdLoad.dismiss();
+                    pdLoad.dismiss();
+                    Toast.makeText(RegisterActivity.this, "Enter a valid Email", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 }

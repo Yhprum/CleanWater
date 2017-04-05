@@ -18,7 +18,6 @@ import java.util.Date;
 
 import edu.gatech.cleanwater.Model.FirebaseHelper;
 import edu.gatech.cleanwater.Model.SourceReport;
-import edu.gatech.cleanwater.Model.SourceReportList;
 import edu.gatech.cleanwater.R;
 
 public class ReportActivity extends AppCompatActivity {
@@ -79,7 +78,7 @@ public class ReportActivity extends AppCompatActivity {
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        boolean b = FirebaseHelper.sumbitSourceReport(date, name, type, quality, lat, longitude);
+        boolean b = FirebaseHelper.submitSourceReport(type, quality, lat, longitude);
 //
 //        SourceReport report = new SourceReport(date, name, type, quality, lat, longitude);
 //
@@ -87,6 +86,8 @@ public class ReportActivity extends AppCompatActivity {
 //
 //        SourceReportList.getInstance().addReport(report);// remove this
         if (b){
+            SourceReport report = new SourceReport(date, name, type, quality, lat, longitude);
+            myRef.child("SourceReportList").push().setValue(report);
             Intent back = new Intent(ReportActivity.this, ListActivity.class);
             startActivity(back);
         } else {
