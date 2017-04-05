@@ -79,7 +79,7 @@ public class ReportActivity extends AppCompatActivity {
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        boolean b = FirebaseHelper.sumbitSourceReport(date, name, type, quality, lat, longitude);
+        boolean b = FirebaseHelper.submitSourceReport(date, name, type, quality, lat, longitude);
 //
 //        SourceReport report = new SourceReport(date, name, type, quality, lat, longitude);
 //

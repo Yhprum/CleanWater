@@ -25,7 +25,7 @@ public class FirebaseHelper {
     private static String status = "";
 
     /**
-     * sumbits a new water source report to the database
+     * Submits a new water source report to the database
      * @param date the date of submission
      * @param reporter the name of the reporter
      * @param waterType the type of water
@@ -34,7 +34,7 @@ public class FirebaseHelper {
      * @param longitude the longitude of the water's location
      * @return true if the report was submitted, false otherwise
      */
-    public static boolean sumbitSourceReport(String date, String reporter, String waterType, String waterCondition, double latitude, double longitude) {
+    public static boolean submitSourceReport(String date, String reporter, String waterType, String waterCondition, double latitude, double longitude) {
 
         myRef = FirebaseDatabase.getInstance().getReference();
         if (latitude > 90 || latitude < -90) {
@@ -64,7 +64,7 @@ public class FirebaseHelper {
      * @param longitude the longitude of the water's location
      * @return true if the report was submitted, false otherwise
      */
-    public static boolean sumbitPurityReport(String date, String reporter, int virus, int contaminant, double latitude, double longitude) {
+    public static boolean submitPurityReport(String date, String reporter, int virus, int contaminant, double latitude, double longitude) {
         myRef = FirebaseDatabase.getInstance().getReference();
         if (latitude > 90 || latitude < -90) {
             return false;

@@ -81,7 +81,7 @@ public class PurityReportActivity extends AppCompatActivity {
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        boolean b = FirebaseHelper.sumbitPurityReport(date, name, virus, contaminant, lat, longitude);
+        boolean b = FirebaseHelper.submitPurityReport(date, name, virus, contaminant, lat, longitude);
 
 //        PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
 //
