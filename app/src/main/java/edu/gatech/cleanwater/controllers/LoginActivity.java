@@ -63,6 +63,9 @@ public class LoginActivity extends AppCompatActivity {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
+        pdLoad.setMessage("Logging in...");
+        pdLoad.show();
+
         String s = FirebaseHelper.loginUser(username, password);
 
         if (s.equals("bad username")) {
@@ -75,26 +78,15 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        pdLoad.setMessage("Logging in...");
-        pdLoad.show();
-
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                System.out.println(task.isSuccessful());
-                if (task.isSuccessful()) {
-                    pdLoad.dismiss();
-                    finish();
-                    Intent login = new Intent(getApplicationContext(), ListActivity.class);
-                    LoginActivity.this.startActivity(login);
-                } else {
-                    pdLoad.dismiss();
-                    final TextView tvIncorrect = (TextView) findViewById(R.id.tvIncorrect);
-                    tvIncorrect.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+        if (s.equals("bad")) {
+            pdLoad.dismiss();
+            final TextView tvIncorrect = (TextView) findViewById(R.id.tvIncorrect);
+            tvIncorrect.setVisibility(View.VISIBLE);
+            return;
+        }
+        pdLoad.dismiss();
+        finish();
+        Intent login = new Intent(getApplicationContext(), ListActivity.class);
+        LoginActivity.this.startActivity(login);
     }
 }

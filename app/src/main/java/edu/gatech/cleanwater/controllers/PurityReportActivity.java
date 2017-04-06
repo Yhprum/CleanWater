@@ -81,11 +81,7 @@ public class PurityReportActivity extends AppCompatActivity {
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-<<<<<<< HEAD
         boolean b = FirebaseHelper.submitPurityReport(date, name, virus, contaminant, lat, longitude);
-=======
-        boolean b = FirebaseHelper.submitPurityReport(lat, longitude);
->>>>>>> origin/master
 
 //        PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
 //
@@ -94,8 +90,6 @@ public class PurityReportActivity extends AppCompatActivity {
 //        PurityReportList.getInstance().addReport(report);// remove this
 
         if (b) {
-            PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
-            myRef.child("PurityReportListReportList").push().setValue(report);
             Intent back = new Intent(PurityReportActivity.this, PurityListActivity.class);
             startActivity(back);
         } else {
