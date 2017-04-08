@@ -17,8 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.gatech.cleanwater.Model.FirebaseHelper;
-import edu.gatech.cleanwater.Model.SourceReport;
-import edu.gatech.cleanwater.Model.SourceReportList;
 import edu.gatech.cleanwater.R;
 
 public class ReportActivity extends AppCompatActivity {

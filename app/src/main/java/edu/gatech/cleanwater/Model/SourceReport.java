@@ -1,7 +1,5 @@
 package edu.gatech.cleanwater.Model;
 
-import java.util.Date;
-
 /**
  * Created by Ryan on 2/27/2017.
  * holds all of the data of a source report
