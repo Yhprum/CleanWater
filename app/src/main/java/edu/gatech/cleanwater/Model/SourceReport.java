@@ -8,14 +8,14 @@ import java.util.Date;
  */
 
 public class SourceReport {
-    public String date;
-    public String reporter;
+    private String date;
+    private String reporter;
     public String waterType;
     public String waterCondition;
     public int reportNumber;
     public double latitude;
     public double longitude;
-    public static int reportNumber_next = 1000;
+    private static int reportNumber_next = 1000;
 
     /**
      * empty default constructor for Firebase purposes

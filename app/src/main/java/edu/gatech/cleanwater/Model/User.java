@@ -7,9 +7,9 @@ package edu.gatech.cleanwater.Model;
 
 public class User {
 
-    public String name;
-    public String address;
-    public String userType;
+    private String name;
+    private String address;
+    private String userType;
 
     /**
      * Initializes a new User with the default information

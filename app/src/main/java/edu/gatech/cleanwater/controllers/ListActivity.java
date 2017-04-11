@@ -145,7 +145,7 @@ public class ListActivity extends AppCompatActivity
         } else if (id == R.id.nav_purity) {
             myDB.getReference().child(mAuth.getCurrentUser().getUid()).child("userType").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) { // get the current user's usertype
+                public void onDataChange(DataSnapshot dataSnapshot) { // get the current user's user type
                     String type = dataSnapshot.getValue().toString();
                     System.out.println(type);
                     if (type.equals(UserType.MANAGER.name()) || type.equals(UserType.ADMIN.name())) {
@@ -170,7 +170,7 @@ public class ListActivity extends AppCompatActivity
     }
 
     /**
-     * setting up the recylcler view to diplay the list of source reports
+     * setting up the recycler view to display the list of source reports
      * @param recyclerView the recycler view to set up
      */
     private void setupRecyclerView(RecyclerView recyclerView) {

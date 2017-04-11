@@ -151,7 +151,7 @@ public class PurityListActivity extends AppCompatActivity
     }
 
     /**
-     * setting up the recylcler view to diplay the list of source reports
+     * setting up the recycler view to display the list of source reports
      * @param recyclerView the recycler view to set up
      */
     private void setupRecyclerView(RecyclerView recyclerView) {

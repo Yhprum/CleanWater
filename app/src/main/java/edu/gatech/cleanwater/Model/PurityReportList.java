@@ -12,7 +12,7 @@ public class PurityReportList {
 
     private static PurityReportList ourInstance = new PurityReportList();
 
-    public List<PurityReport> list;
+    private List<PurityReport> list;
 
     public PurityReportList() {
         list = new ArrayList<>();
