@@ -17,10 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.gatech.cleanwater.Model.FirebaseHelper;
-import edu.gatech.cleanwater.Model.PurityReport;
-import edu.gatech.cleanwater.Model.PurityReportList;
-import edu.gatech.cleanwater.Model.SourceReport;
-import edu.gatech.cleanwater.Model.SourceReportList;
 import edu.gatech.cleanwater.R;
 
 public class PurityReportActivity extends AppCompatActivity {
@@ -81,7 +77,7 @@ public class PurityReportActivity extends AppCompatActivity {
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        boolean b = FirebaseHelper.submitPurityReport(lat, longitude);
+        boolean b = FirebaseHelper.submitPurityReport(date, name, virus, contaminant, lat, longitude);
 
 //        PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
 //
@@ -90,8 +86,6 @@ public class PurityReportActivity extends AppCompatActivity {
 //        PurityReportList.getInstance().addReport(report);// remove this
 
         if (b) {
-            PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
-            myRef.child("PurityReportListReportList").push().setValue(report);
             Intent back = new Intent(PurityReportActivity.this, PurityListActivity.class);
             startActivity(back);
         } else {
