@@ -10,7 +10,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Tests the firebase submitPurityReport method
+ * Tests the Firebase submitPurityReport method
  */
 
 public class DuncanTest {

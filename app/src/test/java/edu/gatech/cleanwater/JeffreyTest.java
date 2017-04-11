@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 
 /**
- * Created by Jeffrey on 4/5/2017.
+ * Created by Jeffrey Lin on 4/5/2017.
  */
 
 public class JeffreyTest {

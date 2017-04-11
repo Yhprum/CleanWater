@@ -9,7 +9,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Tests the FirebaseHelper.submitSourceReport method
+ * Tests the FirebaseHelper.submitSourceReport method.
  */
 
 public class RyanTest {
