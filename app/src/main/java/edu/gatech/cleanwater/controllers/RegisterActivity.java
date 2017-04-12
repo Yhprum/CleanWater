@@ -2,6 +2,7 @@ package edu.gatech.cleanwater.controllers;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,9 +13,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import edu.gatech.cleanwater.Model.FirebaseHelper;
+import edu.gatech.cleanwater.Model.User;
 import edu.gatech.cleanwater.Model.UserType;
 import edu.gatech.cleanwater.R;
 
@@ -25,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressDialog pdLoad;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +76,9 @@ public class RegisterActivity extends AppCompatActivity {
      * Registers a new user via Firebase
      */
     private void registerUser() {
-        String username = etUsername.getText().toString().trim();
+        final String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
-        //UserType type = (UserType) sType.getSelectedItem();
+        final UserType type = (UserType) sType.getSelectedItem();
 
         if(TextUtils.isEmpty(username)) {
             Toast.makeText(this, "Enter an E-mail", Toast.LENGTH_SHORT).show();
@@ -99,6 +108,22 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter a valid Email", Toast.LENGTH_SHORT).show();
             return;
         }
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+        mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    pdLoad.dismiss();
+                    Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    mRef = FirebaseDatabase.getInstance().getReference();
+                    User createUser = new User("enter name", "enter address", type.name());
+                    FirebaseUser fUser = mAuth.getCurrentUser();
+                    mRef.child(fUser.getUid()).setValue(createUser);
+                } else {
+                    pdLoad.dismiss();
+                    pdLoad.dismiss();
+                    Toast.makeText(RegisterActivity.this, "Enter a valid Email", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

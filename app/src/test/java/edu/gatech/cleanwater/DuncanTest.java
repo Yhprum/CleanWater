@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class DuncanTest {
     @Test
     public void submitPurityReportTest() {
-        /*
+
         assertFalse(FirebaseHelper.submitPurityReport(89, -181));
         assertTrue(FirebaseHelper.submitPurityReport(89, -179));
         assertTrue(FirebaseHelper.submitPurityReport(89, -89));
@@ -28,11 +28,5 @@ public class DuncanTest {
         assertTrue(FirebaseHelper.submitPurityReport(90, -180));
         assertTrue(FirebaseHelper.submitPurityReport(90, -179));
         assertTrue(FirebaseHelper.submitPurityReport(90, -89));
-
-        */
-
-
-
-
     }
 }

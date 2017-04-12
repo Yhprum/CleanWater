@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class RyanTest {
     @Test
     public void testSubmitSourceReport() {
-        /*
+
         String waterType = "non empty string";
         String waterCondition = "non empty string";
         double latitude = 90;
@@ -43,6 +43,5 @@ public class RyanTest {
 
         longitude = 181;
         assertFalse(FirebaseHelper.submitSourceReport(waterType, waterCondition, latitude, longitude));
-        */
     }
 }
