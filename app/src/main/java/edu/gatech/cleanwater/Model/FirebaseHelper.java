@@ -1,14 +1,6 @@
 package edu.gatech.cleanwater.Model;
 
-import android.support.annotation.NonNull;
-import android.text.TextUtils;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by Ryan on 4/2/2017.
@@ -90,5 +82,23 @@ public class FirebaseHelper {
             return "bad password";
         }
         return "good";
+    }
+
+    /**
+     * checks bounds for submitting Purity report
+     *
+     * @param latitude the latitude of waters location
+     * @param longitude the longitude of waters location
+     * @return true if report submited
+     */
+    public static boolean submitPReport(double latitude, double longitude) {
+        if (latitude > 90 || latitude < -90) {
+            return false;
+        }
+        if (longitude > 180 || longitude < -180) {
+            return false;
+        }
+
+        return true;
     }
 }
