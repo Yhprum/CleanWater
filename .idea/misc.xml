@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.Model.FirebaseHelper boolean submitPReport(double latitude, double longitude)" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.Model.FirebaseHelper mAuth" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.Model.FirebaseHelper" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.controllers.ListActivity.ReportRecyclerViewAdapter.ViewHolder mReport" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.controllers.ListActivity.ReportRecyclerViewAdapter.ViewHolder mView" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.controllers.ListActivity.ReportRecyclerViewAdapter.ViewHolder ViewHolder(android.view.View view)" />
+      <entry_point TYPE="class" FQNAME="edu.gatech.cleanwater.controllers.ListActivity.ReportRecyclerViewAdapter.ViewHolder" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.controllers.ListActivity.ReportRecyclerViewAdapter ReportRecyclerViewAdapter(java.util.List&lt;edu.gatech.cleanwater.Model.SourceReport&gt; list)" />
+      <entry_point TYPE="class" FQNAME="edu.gatech.cleanwater.controllers.ListActivity.ReportRecyclerViewAdapter" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.ListActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.LoginActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.MapsActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.ProfileActivity" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.controllers.PurityListActivity.ReportRecyclerViewAdapter.ViewHolder mReport" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.controllers.PurityListActivity.ReportRecyclerViewAdapter.ViewHolder mView" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.controllers.PurityListActivity.ReportRecyclerViewAdapter.ViewHolder ViewHolder(android.view.View view)" />
+      <entry_point TYPE="class" FQNAME="edu.gatech.cleanwater.controllers.PurityListActivity.ReportRecyclerViewAdapter.ViewHolder" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.controllers.PurityListActivity.ReportRecyclerViewAdapter ReportRecyclerViewAdapter(java.util.List&lt;edu.gatech.cleanwater.Model.PurityReport&gt; list)" />
+      <entry_point TYPE="class" FQNAME="edu.gatech.cleanwater.controllers.PurityListActivity.ReportRecyclerViewAdapter" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.controllers.PurityListActivity mAuth" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.PurityListActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.PurityReportActivity" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.Model.PurityReportList void addReport(edu.gatech.cleanwater.Model.PurityReport report)" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.Model.PurityReportList PurityReportList()" />
+      <entry_point TYPE="class" FQNAME="edu.gatech.cleanwater.Model.PurityReportList" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.RegisterActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.ReportActivity" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.Model.SourceReportList void addReport(edu.gatech.cleanwater.Model.SourceReport report)" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.Model.SourceReportList SourceReportList()" />
+      <entry_point TYPE="class" FQNAME="edu.gatech.cleanwater.Model.SourceReportList" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.Model.User User()" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.Model.User userType" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.Model.User address" />
+      <entry_point TYPE="field" FQNAME="edu.gatech.cleanwater.Model.User name" />
+      <entry_point TYPE="method" FQNAME="edu.gatech.cleanwater.Model.User User(java.lang.String name, java.lang.String address, java.lang.String userType)" />
+      <entry_point TYPE="class" FQNAME="edu.gatech.cleanwater.Model.User" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.Model.UserType" />
+      <entry_point TYPE="implicit.constructor" FQNAME="edu.gatech.cleanwater.controllers.WelcomeActivity" />
+    </entry_points>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
