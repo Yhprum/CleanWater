@@ -31,11 +31,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     private EditText etName;
     private EditText etAddress;
-    private Button bUpdate;
-    private TextView tvUsername;
-    private Button bLogout;
-    private Button bSubmit;
-    private Button bView;
     private Spinner sType;
 
     @Override
@@ -56,11 +51,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         etName = (EditText) findViewById(R.id.etName);
         etAddress = (EditText) findViewById(R.id.etAddress);
-        bUpdate = (Button) findViewById(R.id.bUpdate);
-        tvUsername = (TextView) findViewById(R.id.tvEmail);
-        bLogout = (Button) findViewById(R.id.bLogout);
-        bSubmit = (Button) findViewById(R.id.bSubmit);
-        bView = (Button) findViewById(R.id.bView);
+        Button bUpdate = (Button) findViewById(R.id.bUpdate);
+        TextView tvUsername = (TextView) findViewById(R.id.tvEmail);
+        Button bLogout = (Button) findViewById(R.id.bLogout);
+        Button bSubmit = (Button) findViewById(R.id.bSubmit);
+        Button bView = (Button) findViewById(R.id.bView);
         sType = (Spinner) findViewById(R.id.sType);
 
         tvUsername.setText("Welcome " + user.getEmail());

@@ -28,8 +28,6 @@ public class PurityReportActivity extends AppCompatActivity {
     private EditText etContaminant;
     private EditText etLat;
     private EditText etLong;
-    private Button bSubmit;
-    private Button bCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +36,8 @@ public class PurityReportActivity extends AppCompatActivity {
 
         myRef = FirebaseDatabase.getInstance().getReference();
 
-        bSubmit = (Button) findViewById(R.id.bSubmit);
-        bCancel = (Button) findViewById(R.id.bCancel);
+        Button bSubmit = (Button) findViewById(R.id.bSubmit);
+        Button bCancel = (Button) findViewById(R.id.bCancel);
 
         etVirus = (EditText) findViewById(R.id.etVirus);
         etContaminant = (EditText) findViewById(R.id.etContaminant);

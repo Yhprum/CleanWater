@@ -28,8 +28,6 @@ public class ReportActivity extends AppCompatActivity {
     private EditText etQuality;
     private EditText etLat;
     private EditText etLong;
-    private Button bSubmit;
-    private Button bCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +36,8 @@ public class ReportActivity extends AppCompatActivity {
 
         myRef = FirebaseDatabase.getInstance().getReference();
 
-        bSubmit = (Button) findViewById(R.id.bSubmit);
-        bCancel = (Button) findViewById(R.id.bCancel);
+        Button bSubmit = (Button) findViewById(R.id.bSubmit);
+        Button bCancel = (Button) findViewById(R.id.bCancel);
 
         etType = (EditText) findViewById(R.id.etType);
         etQuality = (EditText) findViewById(R.id.etQuality);
