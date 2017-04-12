@@ -6,14 +6,14 @@ package edu.gatech.cleanwater.Model;
  */
 
 public class SourceReport {
-    private String date;
-    private String reporter;
+    public String date;
+    public String reporter;
     public String waterType;
     public String waterCondition;
     public int reportNumber;
     public double latitude;
     public double longitude;
-    private static int reportNumber_next = 1000;
+    public static int reportNumber_next = 1000;
 
     /**
      * empty default constructor for Firebase purposes

@@ -89,7 +89,7 @@ public class FirebaseHelper {
      *
      * @param latitude the latitude of waters location
      * @param longitude the longitude of waters location
-     * @return true if report submitted
+     * @return true if report submited
      */
     public static boolean submitPReport(double latitude, double longitude) {
         if (latitude > 90 || latitude < -90) {

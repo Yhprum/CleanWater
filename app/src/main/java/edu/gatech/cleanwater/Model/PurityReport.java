@@ -6,12 +6,14 @@ package edu.gatech.cleanwater.Model;
  */
 
 public class PurityReport {
-    private String date;
-    private String reporter;
-    private int virus;
-    private int contaminant;
+    public String date;
+    public String reporter;
+    public int virus;
+    public int contaminant;
     public int reportNumber;
-    private static int reportNumber_next = 1000;
+    public double latitude;
+    public double longitude;
+    public static int reportNumber_next = 1000;
 
     /**
      * empty default constructor for Firebase purposes
@@ -34,8 +36,8 @@ public class PurityReport {
         this.reporter = reporter;
         this.virus = virus;
         this.contaminant = contaminant;
-        double latitude1 = latitude;
-        double longitude1 = longitude;
+        this.latitude = latitude;
+        this.longitude = longitude;
         reportNumber = reportNumber_next++;
     }
 
