@@ -67,10 +67,10 @@ public class PurityReportActivity extends AppCompatActivity {
      */
     private void submitReport() {
         //TODO: add map input if we can
-        int virus = Integer.parseInt(etVirus.getText().toString().trim());
-        int contaminant = Integer.parseInt(etContaminant.getText().toString().trim());
-        double lat = Double.parseDouble(etLat.getText().toString().trim());
-        double longitude = Double.parseDouble(etLong.getText().toString().trim());
+        String virus = etVirus.getText().toString().trim();
+        String contaminant = etContaminant.getText().toString().trim();
+        String lat = etLat.getText().toString().trim();
+        String longitude = etLong.getText().toString().trim();
 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date d = new Date();
@@ -87,7 +87,12 @@ public class PurityReportActivity extends AppCompatActivity {
 //        PurityReportList.getInstance().addReport(report);// remove this
 
         if (b) {
-            PurityReport report = new PurityReport(date, name, virus, contaminant, lat, longitude);
+            int v = Integer.parseInt(virus);
+            int c = Integer.parseInt(contaminant);
+            double la = Double.parseDouble(lat);
+            double lo = Double.parseDouble(longitude);
+
+            PurityReport report = new PurityReport(date, name, v, c, la, lo);
             myRef.child("PurityReportListReportList").push().setValue(report);
             Intent back = new Intent(PurityReportActivity.this, PurityListActivity.class);
             startActivity(back);

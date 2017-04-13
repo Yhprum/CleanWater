@@ -17,8 +17,8 @@ public class RyanTest {
 
         String waterType = "non empty string";
         String waterCondition = "non empty string";
-        double latitude = 90;
-        double longitude = 180;
+        String latitude = "90";
+        String longitude = "180";
 
         assertTrue(FirebaseHelper.submitSourceReport(waterType, waterCondition, latitude, longitude));
 
@@ -30,17 +30,17 @@ public class RyanTest {
         assertFalse(FirebaseHelper.submitSourceReport(waterType, waterCondition, latitude, longitude));
 
         waterCondition = "non empty String";
-        latitude = -91;
+        latitude = "-91";
         assertFalse(FirebaseHelper.submitSourceReport(waterType, waterCondition, latitude, longitude));
 
-        latitude = 91;
+        latitude = "91";
         assertFalse(FirebaseHelper.submitSourceReport(waterType, waterCondition, latitude, longitude));
 
-        latitude = 0;
-        longitude = -181;
+        latitude = "0";
+        longitude = "-181";
         assertFalse(FirebaseHelper.submitSourceReport(waterType, waterCondition, latitude, longitude));
 
-        longitude = 181;
+        longitude = "181";
         assertFalse(FirebaseHelper.submitSourceReport(waterType, waterCondition, latitude, longitude));
     }
 }

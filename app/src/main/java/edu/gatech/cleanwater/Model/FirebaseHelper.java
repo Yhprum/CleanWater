@@ -19,12 +19,17 @@ public class FirebaseHelper {
      * @param longitude the longitude of the water's location
      * @return true if the report was submitted, false otherwise
      */
-    public static boolean submitSourceReport(String waterType, String waterCondition, double latitude, double longitude) {
+    public static boolean submitSourceReport(String waterType, String waterCondition, String latitude, String longitude) {
 
-        if (latitude > 90 || latitude < -90) {
+        if ("".equals(latitude) || "".equals(longitude)) {
             return false;
         }
-        if (longitude > 180 || longitude < -180) {
+        double la = Double.parseDouble(latitude);
+        double lo = Double.parseDouble(longitude);
+        if (la > 90 || la < -90) {
+            return false;
+        }
+        if (lo > 180 || lo < -180) {
             return false;
         }
         if("".equals(waterType)) {
@@ -42,11 +47,16 @@ public class FirebaseHelper {
      * @param longitude the longitude of the water's location
      * @return true if the report was submitted, false otherwise
      */
-    public static boolean submitPurityReport(double latitude, double longitude) {
-        if (latitude > 90 || latitude < -90) {
+    public static boolean submitPurityReport(String latitude, String longitude) {
+        if ("".equals(latitude) || "".equals(longitude)) {
             return false;
         }
-        if (longitude > 180 || longitude < -180) {
+        double la = Double.parseDouble(latitude);
+        double lo = Double.parseDouble(longitude);
+        if (la > 90 || la < -90) {
+            return false;
+        }
+        if (lo > 180 || lo < -180) {
             return false;
         }
         return true;

@@ -69,8 +69,8 @@ public class ReportActivity extends AppCompatActivity {
         //TODO: add map input if we can
         String type = etType.getText().toString().trim();
         String quality = etQuality.getText().toString().trim();
-        double lat = Double.parseDouble(etLat.getText().toString().trim());
-        double longitude = Double.parseDouble(etLong.getText().toString().trim());
+        String lat = etLat.getText().toString().trim();
+        String longitude = etLong.getText().toString().trim();
 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date d = new Date();
@@ -86,7 +86,10 @@ public class ReportActivity extends AppCompatActivity {
 //
 //        SourceReportList.getInstance().addReport(report);// remove this
         if (b){
-            SourceReport report = new SourceReport(date, name, type, quality, lat, longitude);
+            double la = Double.parseDouble(lat);
+            double lo = Double.parseDouble(longitude);
+            SourceReport report = new SourceReport(date, name, type, quality, la, lo);
+
             myRef.child("SourceReportList").push().setValue(report);
             Intent back = new Intent(ReportActivity.this, ListActivity.class);
             startActivity(back);
