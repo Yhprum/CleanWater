@@ -58,4 +58,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvForgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot your Password?"
+        android:layout_alignBaseline="@+id/bCancel"
+        android:layout_alignBottom="@+id/bCancel"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -38,6 +38,30 @@ public class LoginActivity extends AppCompatActivity {
         final Button bLogin = (Button) findViewById(R.id.bLogin);
         final Button bCancel = (Button) findViewById(R.id.bCancel);
 
+        final TextView tvForgot = (TextView) findViewById(R.id.tvForgot);
+
+        tvForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                String email = etUsername.getText().toString().trim();
+                if (!"".equals(email)) {
+                    mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Email sent", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Email not found", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(LoginActivity.this, "Enter the email to send to", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         bCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
